@@ -184,7 +184,7 @@ def overlap_point_polygon(point, polygon):
 
     # Start ray tracing.
     nbr_of_crossings = 0
-    for i in xrange(pnt_arr.shape[0] - 1):
+    for i in range(pnt_arr.shape[0] - 1):
         # Estimate distance along edge direction that line from point along x-axis
         # intersects this polygon edge.
         denominator = pnt_arr[i + 1, 1] - pnt_arr[i, 1]

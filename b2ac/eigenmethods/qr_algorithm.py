@@ -342,17 +342,17 @@ def Givens_QR_step_double(A):
     _, n = A.shape
 
     G_storage = []
-    for k in xrange(n - 1):
+    for k in range(n - 1):
         c, s = ma.Givens_rotation_double(A[k, k], A[k + 1, k])
         G_storage.append((c, s))
-        for j in xrange(n):
+        for j in range(n):
             tau_1 = A[k, j]
             tau_2 = A[k + 1, j]
             A[k, j] = ((tau_1 * c) - (tau_2 * s))
             A[k + 1, j] = ((tau_1 * s) + (tau_2 * c))
-    for k in xrange(n - 1):
+    for k in range(n - 1):
         c, s = G_storage.pop(0)
-        for j in xrange(n):
+        for j in range(n):
             tau_1 = A[j, k]
             tau_2 = A[j, k + 1]
             A[j, k] = ((tau_1 * c) - (tau_2 * s))
@@ -373,17 +373,17 @@ def Givens_QR_step_int(A):
     _, n = A.shape
 
     G_storage = []
-    for k in xrange(n - 1):
+    for k in range(n - 1):
         c_n, s_n, denominator = ma.Givens_rotation_int(A[k, k], A[k + 1, k])
         G_storage.append((c_n, s_n, denominator))
-        for j in xrange(n):
+        for j in range(n):
             tau_1 = A[k, j]
             tau_2 = A[k + 1, j]
             A[k, j] = ((tau_1 * c_n) - (tau_2 * s_n)) // denominator
             A[k + 1, j] = ((tau_1 * s_n) + (tau_2 * c_n)) // denominator
-    for k in xrange(n - 1):
+    for k in range(n - 1):
         c_n, s_n, denominator = G_storage.pop(0)
-        for j in xrange(n):
+        for j in range(n):
             tau_1 = A[j, k]
             tau_2 = A[j, k + 1]
             A[j, k] = ((tau_1 * c_n) - (tau_2 * s_n)) // denominator

@@ -202,7 +202,7 @@ def _calculate_scatter_matrix_c(x, y):
     """
     S = np.zeros((6, 6), 'int32')
 
-    for i in xrange(len(x)):
+    for i in range(len(x)):
         tmp_x2 = x[i] ** 2
         tmp_x3 = tmp_x2 * x[i]
         tmp_y2 = y[i] ** 2

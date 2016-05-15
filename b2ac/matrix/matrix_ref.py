@@ -61,7 +61,7 @@ def inverse_symmetric_3by3_double(M):
     determinant += M[1] * inverse[1]  # Using addition since minus is integrated in adjunct matrix.
     determinant += M[2] * inverse[2]
 
-    for i in xrange(len(inverse)):
+    for i in range(len(inverse)):
         inverse[i] /= determinant
 
     return inverse

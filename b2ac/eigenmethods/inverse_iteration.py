@@ -45,7 +45,7 @@ def inverse_iteration_for_eigenvector_double(A, eigenvalue, n_iterations=1):
     # Subtract the eigenvalue from the diagonal entries of the matrix.
     # N_POLYPOINTS.B. Also slightly perturb the eigenvalue so the matrix will
     # not be so close to singular!
-    for k in xrange(A.shape[0]):
+    for k in range(A.shape[0]):
         A[k, k] -= eigenvalue + 0.001
     # Obtain the inverse of the matrix.
     A_inv = mo.inverse_3by3_double(A).reshape((3, 3))
@@ -53,7 +53,7 @@ def inverse_iteration_for_eigenvector_double(A, eigenvalue, n_iterations=1):
     eigenvector = np.ones((A.shape[0], ), 'float')
     eigenvector /= np.linalg.norm(eigenvector)
     # Perform the desired number of iterations.
-    for k in xrange(n_iterations):
+    for k in range(n_iterations):
         eigenvector = np.dot(A_inv, eigenvector)
         eigenvector /= np.linalg.norm(eigenvector)
 
@@ -80,7 +80,7 @@ def inverse_iteration_for_eigenvector_int(A, eigenvalue):
     A = np.array(A, 'int64')
 
     # Subtract the eigenvalue from the diagonal entries of the matrix.
-    for k in xrange(A.shape[0]):
+    for k in range(A.shape[0]):
         A[k, k] -= eigenvalue
     A, scale = fp.scale_64bit_matrix(A)
 

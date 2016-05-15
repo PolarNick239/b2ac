@@ -32,7 +32,7 @@ def QR_factorisation_Householder_double(A):
 
     n, m = A.shape
     V = np.zeros_like(A, 'float')
-    for k in xrange(n):
+    for k in range(n):
         V[k:, k] = A[k:, k].copy()
         V[k, k] += np.sign(V[k, k]) * np.linalg.norm(V[k:, k], 2)
         V[k:, k] /= np.linalg.norm(V[k:, k], 2)
@@ -40,7 +40,7 @@ def QR_factorisation_Householder_double(A):
     R = np.triu(A[:n, :n])
 
     Q = np.eye(m, n)
-    for k in xrange((n - 1), -1, -1):
+    for k in range((n - 1), -1, -1):
         Q[k:, k:] -= np.dot((2 * (np.outer(V[k:, k], V[k:, k]))), Q[k:, k:])
     return Q, R
 
@@ -50,8 +50,8 @@ def QR_factorisation_Givens_double(A):
     n, m = A.shape
     R = np.array(A, dtype='float')
     Q = np.eye(n)
-    for i in xrange(m - 1):
-        for j in xrange(n - 1, i, -1):
+    for i in range(m - 1):
+        for j in range(n - 1, i, -1):
             G = Givens_rotation_matrix_double(R[j - 1, i], R[j, i])
             R[(j - 1):(j + 1), :] = np.dot(G, R[(j - 1):(j + 1), :])
             Q[(j - 1):(j + 1), :] = np.dot(G, Q[(j - 1):(j + 1), :])
@@ -65,15 +65,15 @@ def QR_factorisation_int64(A):
 def convert_to_Hessenberg_Givens_double(A):
     n, m = A.shape
     A = np.array(A, 'float')
-    for i in xrange(m):
-        for k in xrange(m - 1, i + 1, -1):
+    for i in range(m):
+        for k in range(m - 1, i + 1, -1):
             c, s = Givens_rotation_double(A[k - 1, i], A[k, i])
-            for j in xrange(m):
+            for j in range(m):
                 tau_1 = A[k-1, j]
                 tau_2 = A[k, j]
                 A[k-1, j] = ((tau_1 * c) - (tau_2 * s))
                 A[k, j] = ((tau_1 * s) + (tau_2 * c))
-            for j in xrange(n):
+            for j in range(n):
                 tau_1 = A[j, k-1]
                 tau_2 = A[j, k]
                 A[j, k-1] = ((tau_1 * c) - (tau_2 * s))
@@ -84,15 +84,15 @@ def convert_to_Hessenberg_Givens_double(A):
 def convert_to_Hessenberg_Givens_int(A):
     m, n = A.shape
     A = np.array(A, 'int64')
-    for i in xrange(m):
-        for k in xrange(m - 1, i + 1, -1):
+    for i in range(m):
+        for k in range(m - 1, i + 1, -1):
             c_n, s_n, denominator = Givens_rotation_int(A[k - 1, i], A[k, i])
-            for j in xrange(m):
+            for j in range(m):
                 tau_1 = A[k-1, j]
                 tau_2 = A[k, j]
                 A[k-1, j] = ((tau_1 * c_n) - (tau_2 * s_n)) // denominator
                 A[k, j] = ((tau_1 * s_n) + (tau_2 * c_n)) // denominator
-            for j in xrange(n):
+            for j in range(n):
                 tau_1 = A[j, k-1]
                 tau_2 = A[j, k]
                 A[j, k-1] = ((tau_1 * c_n) - (tau_2 * s_n)) // denominator
@@ -136,7 +136,7 @@ def convert_to_Hessenberg_double(A):
     m, n = A.shape
     A = np.array(A, 'float')
 
-    for k in xrange(m - 1):
+    for k in range(m - 1):
         vk = A[(k + 1):, k].copy()
         vk[0] += np.sign(vk[0]) * np.linalg.norm(vk, 2)
         vk /= np.linalg.norm(vk, 2)
@@ -188,7 +188,7 @@ def convert_to_Hessenberg_symmetric_double(A):
     m, n = A.shape
     A = np.array(A, 'float')
 
-    for k in xrange(m - 1):
+    for k in range(m - 1):
         vk = A[(k + 1):, k].copy()
         beta = np.sign(vk[0]) * np.linalg.norm(vk)
         vk[0] += beta
@@ -263,7 +263,7 @@ def sqrt_int64(x, return_fraction=False):
     a = 0
     r = 0
 
-    for i in xrange(BITSPERLONG):
+    for i in range(BITSPERLONG):
 
         r = (r << 2) + top2bits(int(x))
         x <<= 2
